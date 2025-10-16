@@ -1,3 +1,2 @@
-var srcIndex = new Map(JSON.parse('[["sperr",["",[],["lib.rs"]]],["sperr_sys",["",[],["lib.rs"]]]]'));
-createSrcSidebar();
-//{"start":36,"fragment_lengths":[28,33]}
+createSrcSidebar('[["sperr",["",[],["lib.rs"]]],["sperr_sys",["",[],["lib.rs"]]]]');
+//{"start":19,"fragment_lengths":[28,33]}
