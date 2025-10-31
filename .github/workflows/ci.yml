@@ -61,8 +61,7 @@ jobs:
       - name: Checkout the Repository
         uses: actions/checkout@v2
         with:
-          submodules: true
-          recursive: true
+          submodules: recursive
 
       - name: Install libgmp-dev
         run: sudo apt install -y libgmp-dev
@@ -105,8 +104,7 @@ jobs:
       - name: Checkout the Repository
         uses: actions/checkout@v2
         with:
-          submodules: true
-          recursive: true
+          submodules: recursive
 
       - name: Install libgmp-dev
         run: sudo apt install -y libgmp-dev
@@ -169,8 +167,7 @@ jobs:
       - name: Checkout the Repository
         uses: actions/checkout@v2
         with:
-          submodules: true
-          recursive: true
+          submodules: recursive
 
       - name: Install libgmp-dev
         run: sudo apt install -y libgmp-dev
