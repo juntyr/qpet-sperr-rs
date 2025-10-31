@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
-    "sperr-sys"
+    "qpet-sperr-sys"
 ]
 
 [workspace.package]
@@ -13,8 +13,8 @@ rust-version = "1.82"
 
 [workspace.dependencies]
 # workspace-internal crates
-sperr = { version = "0.2", path = ".", default-features = false }
-sperr-sys = { version = "0.2", path = "sperr-sys", default-features = false }
+qpet-sperr = { version = "0.1", path = ".", default-features = false }
+qpet-sperr-sys = { version = "0.1", path = "qpet-sperr-sys", default-features = false }
 
 # crates.io third-party dependencies
 bindgen = { version = "0.72", default-features = false }
@@ -55,25 +55,25 @@ multiple_crate_versions = "warn"
 
 
 [package]
-name = "sperr"
-version = "0.2.0"
+name = "qpet-sperr"
+version = "0.1.0"
 edition = { workspace = true }
 authors = { workspace = true }
 repository = { workspace = true }
 license = { workspace = true }
 rust-version = { workspace = true }
 
-description = "High-level Rust bindings to the SPERR compressor"
+description = "High-level Rust bindings to the QPET-SPERR compressor"
 readme = "README.md"
 categories = ["api-bindings", "compression", "encoding"]
-keywords = ["SPERR", "compression", "encoding"]
+keywords = ["QPET-SPERR", "compression", "encoding"]
 
 [features]
-openmp = ["sperr-sys/openmp"]
+openmp = ["qpet-sperr-sys/openmp"]
 
 [dependencies]
 ndarray = { workspace = true }
-sperr-sys = { workspace = true }
+qpet-sperr-sys = { workspace = true }
 thiserror = { workspace = true }
 
 [lints]

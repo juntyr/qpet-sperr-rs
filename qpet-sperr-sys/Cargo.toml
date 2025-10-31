@@ -1,21 +1,20 @@
 [package]
-name = "sperr-sys"
-version = "0.2.0"
+name = "qpet-sperr-sys"
+version = "0.1.0"
 edition = { workspace = true }
 authors = { workspace = true }
 repository = { workspace = true }
 license = { workspace = true }
 rust-version = { workspace = true }
 
-description = "Low-level Rust bindings to the SPERR compressor"
+description = "Low-level Rust bindings to the QPET-SPERR compressor"
 readme = "README.md"
 categories = ["api-bindings", "compression", "encoding"]
-keywords = ["SPERR", "bindgen", "compression", "encoding"]
+keywords = ["QPET-SPERR", "bindgen", "compression", "encoding"]
 
-# TODO: rename and readd
-# links = "SPERR"
+links = "QPET-SPERR"
 
-exclude = ["/SPERR/.github", "/SPERR/docker", "/SPERR/evaluations", "/SPERR/examples", "/SPERR/handout", "/SPERR/test_data", "/SPERR/test_scripts", "/SPERR/utilities"]
+exclude = ["/QPET-Artifact/.github", "/QPET-Artifact/docker", "/QPET-Artifact/evaluations", "/QPET-Artifact/examples", "/QPET-Artifact/handout", "/QPET-Artifact/test_data", "/QPET-Artifact/test_scripts", "/QPET-Artifact/utilities"]
 
 [features]
 openmp = ["dep:openmp-sys"]

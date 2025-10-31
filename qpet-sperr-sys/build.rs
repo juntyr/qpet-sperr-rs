@@ -22,7 +22,7 @@ fn main() {
         .map(PathBuf::from)
         .expect("missing zstd dependency");
 
-    // use cmake to build SPERR
+    // use cmake to build QPET-SPERR
     let mut config = cmake::Config::new("QPET-Artifact");
     // TODO: don't build symengine tests
     config.define("BUILD_SHARED_LIBS", "OFF");
@@ -46,18 +46,21 @@ fn main() {
         "-I{}",
         out_dir.join("build").join("symengine").display()
     ));
-    let sperr_out = config.build();
+    let qpet_sperr_out = config.build();
 
-    println!("cargo::rustc-link-search=native={}", sperr_out.display());
     println!(
         "cargo::rustc-link-search=native={}",
-        sperr_out.join("lib").display()
+        qpet_sperr_out.display()
     );
     println!(
         "cargo::rustc-link-search=native={}",
-        sperr_out.join("lib64").display()
+        qpet_sperr_out.join("lib").display()
     );
-    println!("cargo::rustc-link-lib=static=SPERR");
+    println!(
+        "cargo::rustc-link-search=native={}",
+        qpet_sperr_out.join("lib64").display()
+    );
+    println!("cargo::rustc-link-lib=static=QPET-SPERR");
     println!("cargo::rustc-link-lib=static=symengine");
     // println!("cargo::rustc-link-lib=static=teuchos"); // only in debug mode
     println!("cargo::rustc-link-lib=static=zstd");
@@ -72,16 +75,13 @@ fn main() {
         .clang_arg("-x")
         .clang_arg("c++")
         .clang_arg("-std=c++17")
-        .clang_arg(format!("-I{}", sperr_out.join("include").display()))
+        .clang_arg(format!("-I{}", qpet_sperr_out.join("include").display()))
         .clang_arg(format!("-I{}", zstd_root.join("include").display()))
         .header("wrapper.hpp")
         .parse_callbacks(Box::new(cargo_callbacks))
-        .allowlist_function("sperr_comp_2d")
-        .allowlist_function("sperr_decomp_2d")
         .allowlist_function("sperr_parse_header")
-        .allowlist_function("sperr_comp_3d")
+        .allowlist_function("qpet_sperr_comp_3d")
         .allowlist_function("sperr_decomp_3d")
-        .allowlist_function("sperr_trunc_3d")
         .allowlist_function("free_dst")
         // MSRV 1.82
         .rust_target(match bindgen::RustTarget::stable(82, 0) {
@@ -103,11 +103,11 @@ fn main() {
     build
         .cpp(true)
         .std("c++17")
-        .include(sperr_out.join("include"))
+        .include(qpet_sperr_out.join("include"))
         .include(zstd_root.join("include"))
         .include(Path::new("QPET-Artifact").join("src"))
         .file("lib.cpp")
         .warnings(false);
 
-    build.compile("mySPERR");
+    build.compile("myQPETSPERR");
 }
