@@ -1,9 +1,9 @@
 (function() {
-    var implementors = Object.fromEntries([["sperr",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html\" title=\"trait core::marker::Sync\">Sync</a> for <a class=\"enum\" href=\"sperr/enum.CompressionMode.html\" title=\"enum sperr::CompressionMode\">CompressionMode</a>",1,["sperr::CompressionMode"]],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html\" title=\"trait core::marker::Sync\">Sync</a> for <a class=\"enum\" href=\"sperr/enum.Error.html\" title=\"enum sperr::Error\">Error</a>",1,["sperr::Error"]]]]]);
+    var implementors = Object.fromEntries([["qpet_sperr",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html\" title=\"trait core::marker::Sync\">Sync</a> for <a class=\"enum\" href=\"qpet_sperr/enum.Error.html\" title=\"enum qpet_sperr::Error\">Error</a>",1,["qpet_sperr::Error"]],["impl&lt;'a&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html\" title=\"trait core::marker::Sync\">Sync</a> for <a class=\"enum\" href=\"qpet_sperr/enum.CompressionMode.html\" title=\"enum qpet_sperr::CompressionMode\">CompressionMode</a>&lt;'a&gt;",1,["qpet_sperr::CompressionMode"]]]]]);
     if (window.register_implementors) {
         window.register_implementors(implementors);
     } else {
         window.pending_implementors = implementors;
     }
 })()
-//{"start":57,"fragment_lengths":[557]}
+//{"start":57,"fragment_lengths":[612]}

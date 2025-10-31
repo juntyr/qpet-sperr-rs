@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["CompressionMode","Error"],"fn":["compress_3d","decompress_into_3d"],"trait":["Element"]};

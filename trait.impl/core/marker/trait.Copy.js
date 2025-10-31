@@ -1,9 +1,9 @@
 (function() {
-    var implementors = Object.fromEntries([["sperr",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html\" title=\"trait core::marker::Copy\">Copy</a> for <a class=\"enum\" href=\"sperr/enum.CompressionMode.html\" title=\"enum sperr::CompressionMode\">CompressionMode</a>"]]]]);
+    var implementors = Object.fromEntries([["qpet_sperr",[["impl&lt;'a&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html\" title=\"trait core::marker::Copy\">Copy</a> for <a class=\"enum\" href=\"qpet_sperr/enum.CompressionMode.html\" title=\"enum qpet_sperr::CompressionMode\">CompressionMode</a>&lt;'a&gt;"]]]]);
     if (window.register_implementors) {
         window.register_implementors(implementors);
     } else {
         window.pending_implementors = implementors;
     }
 })()
-//{"start":57,"fragment_lengths":[275]}
+//{"start":57,"fragment_lengths":[310]}
