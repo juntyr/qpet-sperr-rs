@@ -24,7 +24,12 @@ fn main() {
 
     // use cmake to build QPET-SPERR
     let mut config = cmake::Config::new("QPET-Artifact");
-    // TODO: don't build symengine tests
+    // < symengine config
+    config.define("BUILD_SHARED_LIBS", "OFF");
+    config.define("BUILD_BENCHMARKS", "OFF");
+    config.define("BUILD_TESTS", "OFF");
+    // > symengine config
+    // < QPET-SPERR config
     config.define("BUILD_SHARED_LIBS", "OFF");
     config.define("BUILD_UNIT_TESTS", "OFF");
     config.define("BUILD_CLI_UTILITIES", "OFF");
@@ -36,8 +41,7 @@ fn main() {
             "OFF"
         },
     );
-    config.cflag("-DEXPERIMENTING");
-    config.cxxflag("-DEXPERIMENTING");
+    // > QPET-SPERR config
     config.cflag(format!(
         "-I{}",
         out_dir.join("build").join("symengine").display()
@@ -62,13 +66,12 @@ fn main() {
     );
     println!("cargo::rustc-link-lib=static=QPET-SPERR");
     println!("cargo::rustc-link-lib=static=symengine");
-    // println!("cargo::rustc-link-lib=static=teuchos"); // only in debug mode
+    // TODO: println!("cargo::rustc-link-lib=static=teuchos"); // only in debug mode
     println!("cargo::rustc-link-lib=static=zstd");
     // TODO: build gmp ourselves
     println!("cargo::rustc-link-search=native=/opt/homebrew/opt/gmp/lib/");
-    // TODO: which one of these two do we need to link?
-    println!("cargo::rustc-link-lib=static=gmp");
-    println!("cargo::rustc-link-lib=static=gmpxx");
+    // TODO: once we build gmp ourselves, always link it statically
+    println!("cargo::rustc-link-lib=gmp");
 
     let cargo_callbacks = bindgen::CargoCallbacks::new();
     let bindings = bindgen::Builder::default()

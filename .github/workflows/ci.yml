@@ -88,7 +88,8 @@ jobs:
       - name: Check the powerset
         run: |
           cargo hack check --all \
-            --feature-powerset --keep-going
+            --feature-powerset --keep-going \
+            --release
 
   test:
     name: Test Suite
@@ -197,6 +198,7 @@ jobs:
         run: |
           cargo hack clippy --all \
             --feature-powerset --keep-going \
+            --release \
             -- -D warnings
 
       - name: Check the code style powerset
@@ -204,4 +206,5 @@ jobs:
         run: |
           cargo hack clippy --all \
             --feature-powerset --keep-going \
+            --release \
             -- -D warnings -A unknown-lints -A clippy::multiple-crate-versions
