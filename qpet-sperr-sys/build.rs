@@ -8,6 +8,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+#[allow(clippy::too_many_lines)]
 fn main() {
     println!("cargo::rerun-if-changed=build.rs");
     println!("cargo::rerun-if-changed=lib.cpp");
@@ -44,18 +45,31 @@ fn main() {
         },
     );
     // > QPET-SPERR config
-    config.cflag(format!("-I{}", gmp_root.join("include").display()));
-    config.cxxflag(format!("-I{}", gmp_root.join("include").display()));
-    config.cflag(format!(
-        "-I{}",
-        out_dir.join("build").join("symengine").display()
-    ));
-    config.cxxflag(format!(
-        "-I{}",
-        out_dir.join("build").join("symengine").display()
-    ));
-    config.cflag(format!("-I{}", zstd_root.join("include").display()));
-    config.cxxflag(format!("-I{}", zstd_root.join("include").display()));
+    // < include paths
+    let gmp_include = gmp_root.join("include");
+    let gmp_include_display = gmp_include.display();
+    config.cflag(format!("-I{gmp_include_display}"));
+    config.cxxflag(format!("-I{gmp_include_display}"));
+    let symengine_include = out_dir.join("build").join("symengine");
+    let symengine_include_display = symengine_include.display();
+    config.cflag(format!("-I{symengine_include_display}"));
+    config.cxxflag(format!("-I{symengine_include_display}"));
+    let zstd_include = zstd_root.join("include");
+    let zstd_include_display = zstd_include.display();
+    config.cflag(format!("-I{zstd_include_display}"));
+    config.cxxflag(format!("-I{zstd_include_display}"));
+    if config.get_profile() == "Debug" {
+        let teuchos_include = out_dir
+            .join("build")
+            .join("symengine")
+            .join("symengine")
+            .join("utilities")
+            .join("teuchos");
+        let teuchos_include_display = teuchos_include.display();
+        config.cflag(format!("-I{teuchos_include_display}"));
+        config.cxxflag(format!("-I{teuchos_include_display}"));
+    }
+    // > include paths
     let qpet_sperr_out = config.build();
 
     println!(
@@ -72,7 +86,9 @@ fn main() {
     );
     println!("cargo::rustc-link-lib=static=QPET-SPERR");
     println!("cargo::rustc-link-lib=static=symengine");
-    // TODO: println!("cargo::rustc-link-lib=static=teuchos"); // only in debug mode
+    if config.get_profile() == "Debug" {
+        println!("cargo::rustc-link-lib=static=teuchos");
+    }
     println!("cargo::rustc-link-lib=static=zstd");
     // TODO: build gmp ourselves
     println!(
@@ -82,13 +98,16 @@ fn main() {
     // TODO: once we build gmp ourselves, always link it statically
     println!("cargo::rustc-link-lib=gmp");
 
+    let qpet_sperr_include = qpet_sperr_out.join("include");
+    let qpet_sperr_include_display = qpet_sperr_include.display();
+
     let cargo_callbacks = bindgen::CargoCallbacks::new();
     let bindings = bindgen::Builder::default()
         .clang_arg("-x")
         .clang_arg("c++")
         .clang_arg("-std=c++17")
-        .clang_arg(format!("-I{}", qpet_sperr_out.join("include").display()))
-        .clang_arg(format!("-I{}", zstd_root.join("include").display()))
+        .clang_arg(format!("-I{qpet_sperr_include_display}"))
+        .clang_arg(format!("-I{zstd_include_display}"))
         .header("wrapper.hpp")
         .parse_callbacks(Box::new(cargo_callbacks))
         .allowlist_function("sperr_parse_header")
@@ -115,8 +134,8 @@ fn main() {
     build
         .cpp(true)
         .std("c++17")
-        .include(qpet_sperr_out.join("include"))
-        .include(zstd_root.join("include"))
+        .include(qpet_sperr_include)
+        .include(zstd_include)
         .include(Path::new("QPET-Artifact").join("src"))
         .file("lib.cpp")
         .warnings(false);

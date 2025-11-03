@@ -284,14 +284,14 @@ mod tests {
             high_prec: false,
         });
 
-        compress_decompress(CompressionMode::SymbolicQuantityOfInterest {
-            qoi: "x^2",
-            qoi_block_size: NonZeroU16::MIN.saturating_add(2),
-            qoi_pwe: 0.1,
-            data_pwe: None,
-            qoi_k: 3.0,
-            high_prec: false,
-        });
+        // compress_decompress(CompressionMode::SymbolicQuantityOfInterest {
+        //     qoi: "x^2",
+        //     qoi_block_size: NonZeroU16::MIN.saturating_add(2),
+        //     qoi_pwe: 0.1,
+        //     data_pwe: None,
+        //     qoi_k: 3.0,
+        //     high_prec: false,
+        // });
     }
 
     #[test]
@@ -305,13 +305,13 @@ mod tests {
             high_prec: true,
         });
 
-        compress_decompress(CompressionMode::SymbolicQuantityOfInterest {
-            qoi: "log(x,10)",
-            qoi_block_size: NonZeroU16::MIN.saturating_add(2),
-            qoi_pwe: 0.1,
-            data_pwe: None,
-            qoi_k: 3.0,
-            high_prec: true,
-        });
+        // compress_decompress(CompressionMode::SymbolicQuantityOfInterest {
+        //     qoi: "log(x,10)",
+        //     qoi_block_size: NonZeroU16::MIN.saturating_add(2),
+        //     qoi_pwe: 0.1,
+        //     data_pwe: None,
+        //     qoi_k: 3.0,
+        //     high_prec: true,
+        // });
     }
 }

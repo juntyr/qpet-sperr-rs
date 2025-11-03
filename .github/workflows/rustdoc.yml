@@ -39,8 +39,7 @@ jobs:
           " cargo doc \
             --all-features \
             --no-deps \
-            --workspace \
-            --release
+            --workspace
 
       - name: Deploy the Documentation
         uses: peaceiris/actions-gh-pages@v3
