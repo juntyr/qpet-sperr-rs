@@ -24,6 +24,7 @@
 #![allow(unsafe_code)] // sys-crate
 #![allow(non_upper_case_globals, non_camel_case_types)] // bindgen
 
+use ::gmp_mpfr_sys as _;
 #[cfg(feature = "openmp")]
 use ::openmp_sys as _;
 use ::zstd_sys as _;
