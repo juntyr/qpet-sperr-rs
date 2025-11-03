@@ -16,9 +16,9 @@
 //! [Rust Doc Main]: https://img.shields.io/badge/docs-main-blue
 //! [docs]: https://juntyr.github.io/sperr-rs/sperr
 //!
-//! High-level bindigs to the [SPERR] compressor.
+//! High-level bindigs to the [QPET-SPERR] compressor.
 //!
-//! [SPERR]: https://github.com/NCAR/SPERR
+//! [QPET-SPERR]: https://github.com/JLiu-1/QPET-Artifact/tree/sperr_qpet_revision
 
 use std::{ffi::c_int, num::NonZeroU16};
 
@@ -53,9 +53,6 @@ pub enum Error {
     /// one or more parameters is invalid
     #[error("one or more parameters is invalid")]
     InvalidParameter,
-    /// compressed data is missing the header
-    #[error("compressed data is missing the header")]
-    DecompressMissingHeader,
     /// cannot decompress to an array with a different shape
     #[error("cannot decompress to an array with a different shape")]
     DecompressShapeMismatch,
