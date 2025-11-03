@@ -20,8 +20,9 @@ exclude = ["/QPET-Artifact/.github", "/QPET-Artifact/docker", "/QPET-Artifact/ev
 openmp = ["dep:openmp-sys"]
 
 [dependencies]
+gmp-mpfr-sys = { workspace = true, features = ["c-no-tests"] }
 openmp-sys = { workspace = true, optional = true }
-zstd-sys = { version = "2.0.10", default-features = false }
+zstd-sys = { workspace = true }
 
 [build-dependencies]
 bindgen = { workspace = true, features = ["runtime"] }

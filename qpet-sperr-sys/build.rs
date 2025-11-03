@@ -19,7 +19,9 @@ fn main() {
         .map(PathBuf::from)
         .expect("missing OUT_DIR");
 
-    let gmp_root = Path::new("/opt/homebrew/opt/gmp");
+    let gmp_root = env::var("DEP_GMP_OUT_DIR")
+        .map(PathBuf::from)
+        .expect("missing gmp dependency");
 
     let zstd_root = env::var("DEP_ZSTD_ROOT")
         .map(PathBuf::from)
@@ -90,13 +92,11 @@ fn main() {
         println!("cargo::rustc-link-lib=static=teuchos");
     }
     println!("cargo::rustc-link-lib=static=zstd");
-    // TODO: build gmp ourselves
     println!(
         "cargo::rustc-link-search=native={}",
         gmp_root.join("lib").display()
     );
-    // TODO: once we build gmp ourselves, always link it statically
-    println!("cargo::rustc-link-lib=gmp");
+    println!("cargo::rustc-link-lib=static=gmp");
 
     let qpet_sperr_include = qpet_sperr_out.join("include");
     let qpet_sperr_include_display = qpet_sperr_include.display();

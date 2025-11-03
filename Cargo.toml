@@ -20,9 +20,11 @@ qpet-sperr-sys = { version = "0.1", path = "qpet-sperr-sys", default-features = 
 bindgen = { version = "0.72", default-features = false }
 cc = { version = "1.2", default-features = false }
 cmake = { version = "0.1.45", default-features = false }
-ndarray = { version = "0.16", default-features = false, features = ["std"] }
+gmp-mpfr-sys = { version = "1.6", default-features = false }
+ndarray = { version = "0.16", default-features = false }
 openmp-sys = { version = "1.2", default-features = false }
 thiserror = { version = "2.0", default-features = false }
+zstd-sys = { version = "2.0.10", default-features = false }
 
 [workspace.lints.rust]
 unsafe_code = "deny"
@@ -72,7 +74,7 @@ keywords = ["QPET-SPERR", "compression", "encoding"]
 openmp = ["qpet-sperr-sys/openmp"]
 
 [dependencies]
-ndarray = { workspace = true }
+ndarray = { workspace = true, features = ["std"] }
 qpet-sperr-sys = { workspace = true }
 thiserror = { workspace = true }
 
