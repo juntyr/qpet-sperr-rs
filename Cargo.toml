@@ -14,7 +14,7 @@ rust-version = "1.82"
 [workspace.dependencies]
 # workspace-internal crates
 qpet-sperr = { version = "0.1", path = ".", default-features = false }
-qpet-sperr-sys = { version = "0.1", path = "qpet-sperr-sys", default-features = false }
+qpet-sperr-sys = { version = "0.1.1", path = "qpet-sperr-sys", default-features = false }
 
 # crates.io third-party dependencies
 bindgen = { version = "0.72", default-features = false }
