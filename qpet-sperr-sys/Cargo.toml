@@ -24,6 +24,9 @@ gmp-mpfr-sys = { workspace = true, features = ["c-no-tests"] }
 openmp-sys = { workspace = true, optional = true }
 zstd-sys = { workspace = true }
 
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+gmp-mpfr-sys = { workspace = true, features = ["force-cross"] }
+
 [build-dependencies]
 bindgen = { workspace = true, features = ["runtime"] }
 cc = { workspace = true }

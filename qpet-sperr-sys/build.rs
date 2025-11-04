@@ -29,10 +29,30 @@ fn main() {
 
     // use cmake to build QPET-SPERR
     let mut config = cmake::Config::new("QPET-Artifact");
+    if let Ok(ar) = env::var("AR") {
+        config.define("CMAKE_AR", ar);
+    }
+    if let Ok(ld) = env::var("LD") {
+        config.define("CMAKE_LINKER", ld);
+    }
+    if let Ok(nm) = env::var("NM") {
+        config.define("CMAKE_NM", nm);
+    }
+    if let Ok(objdump) = env::var("OBJDUMP") {
+        config.define("CMAKE_OBJDUMP", objdump);
+    }
+    if let Ok(ranlib) = env::var("RANLIB") {
+        config.define("CMAKE_RANLIB", ranlib);
+    }
+    if let Ok(strip) = env::var("STRIP") {
+        config.define("CMAKE_STRIP", strip);
+    }
     // < symengine config
     config.define("BUILD_SHARED_LIBS", "OFF");
     config.define("BUILD_BENCHMARKS", "OFF");
     config.define("BUILD_TESTS", "OFF");
+    config.define("GMP_LIBRARY", gmp_root.join("lib"));
+    config.define("GMP_INCLUDE_DIR", gmp_root.join("include"));
     // > symengine config
     // < QPET-SPERR config
     config.define("BUILD_SHARED_LIBS", "OFF");
