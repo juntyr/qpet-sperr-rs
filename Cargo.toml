@@ -7,7 +7,7 @@ members = [
 [workspace.package]
 edition = "2021"
 authors = ["Juniper Tyree <juniper.tyree@helsinki.fi>"]
-repository = "https://github.com/juntyr/sperr-rs"
+repository = "https://github.com/juntyr/qpet-sperr-rs"
 license = "MPL-2.0"
 rust-version = "1.82"
 
